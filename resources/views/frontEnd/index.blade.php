@@ -1,0 +1,2 @@
+@extends('frontEnd.pages.home')
+	
