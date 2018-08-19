@@ -90,12 +90,15 @@
                                 <img src="images/product-details/rating.png" alt="" />
                                 <span>
 									<span>{{$product->product_price}}</span>
+                                    {!! Form::open(['url' =>'add-to-cart/'.$product->id,'method' =>'post','enctype'=>'multipart/form-data'])!!}
+                                    {{ csrf_field() }}
 									<label>Quantity:</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
+									<input type="text" name="qty" value="1" />
+									<button type="submit" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
+                                    {!! Form::close() !!}
 								</span>
                                 <p><b>Availability:</b> In Stock</p>
                                 <p><b>Condition:</b> New</p>

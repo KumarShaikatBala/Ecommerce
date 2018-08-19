@@ -84,3 +84,11 @@ Route::post('store-slider','SliderController@store')->name('store-slider');
 Route::get('destroy-slider/{id}','SliderController@destroy')->name('destroy-slider');
 Route::get('active-slider/{id}','SliderController@active')->name('active-slider');
 Route::get('deactive-slider/{id}','SliderController@deactive')->name('deactive-slider');
+/*
+|--------------------------------------------------------------------------
+|                                Cart Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::post('add-to-cart/{id}','CartController@store')->name('add-to-cart');
+Route::get('cart','CartController@show_cart')->name('cart');

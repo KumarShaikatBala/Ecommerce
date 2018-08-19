@@ -111,13 +111,13 @@
                                         <img src="/uploaded_files/product_img/{{$product->product_img}}" alt="" />
                                         <h2>{{$product->product_price}}</h2>
                                         <p>{{$product->product_name}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="{{route('show-product',['id'=>$product->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                     <div class="product-overlay">
                                         <div class="overlay-content">
                                             <h2>{{$product->product_price}}</h2>
                                             <p>{{$product->product_name}}</p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <a href="{{route('show-product',['id'=>$product->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
