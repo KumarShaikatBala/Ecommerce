@@ -92,3 +92,5 @@ Route::get('deactive-slider/{id}','SliderController@deactive')->name('deactive-s
 */
 Route::post('add-to-cart/{id}','CartController@store')->name('add-to-cart');
 Route::get('cart','CartController@show_cart')->name('cart');
+Route::post('update-cart/{id}','CartController@update')->name('update-cart');
+Route::get('delete-cart/{id}','CartController@destroy')->name('delete-cart');
