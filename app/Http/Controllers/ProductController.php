@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin',['except'=>['show']]);
+    }
 
     public function index()
     {

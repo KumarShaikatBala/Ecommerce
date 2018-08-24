@@ -11,11 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     public function index()
     {
         $sliders=Slider::all();
@@ -55,30 +54,6 @@ class SliderController extends Controller
         }
     }
 
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
      Slider::destroy($id);

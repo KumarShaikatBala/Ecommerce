@@ -22,6 +22,11 @@ Route::get('/','HomeController@index')->name('/');
 |--------------------------------------------------------------------------
 |
 */
+Route::get('admin','Auth\AdminLoginController@LoginForm')->name('admin');
+Route::get('admin-signup','AdminController@create')->name('admin-signup');
+Route::post('admin-store','AdminController@store')->name('admin-store');
+Route::post('admin-login','Auth\AdminLoginController@login')->name('admin-login');
+Route::get('admin-logout','Auth\AdminLoginController@logout')->name('admin-logout');
 Route::get('dashboard','AdminController@index')->name('dashboard');
 /*
 |--------------------------------------------------------------------------
@@ -94,3 +99,14 @@ Route::post('add-to-cart/{id}','CartController@store')->name('add-to-cart');
 Route::get('cart','CartController@show_cart')->name('cart');
 Route::post('update-cart/{id}','CartController@update')->name('update-cart');
 Route::get('delete-cart/{id}','CartController@destroy')->name('delete-cart');
+/*
+|--------------------------------------------------------------------------
+|                                User Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('customer-login','Auth\CustomerController@LoginForm')->name('customer-login');
+Route::post('customer','Auth\CustomerController@login')->name('customer');
+Route::get('customer-logout','Auth\CustomerController@logout')->name('customer-logout');
+Route::get('customer-create','Auth\CustomerController@create')->name('customer-create');
+Route::post('customer-store','Auth\CustomerController@store')->name('customer-store');

@@ -308,7 +308,7 @@
                     <!-- start: User Dropdown -->
                     <li class="dropdown">
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="halflings-icon white user"></i> Łukasz Holeczek
+                            <i class="halflings-icon white user"></i> {{Auth::guard('admin')->user()->name}}
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -316,7 +316,7 @@
                                 <span>Account Settings</span>
                             </li>
                             <li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-                            <li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+                            <li><a href="{{route('admin-logout')}}"><i class="halflings-icon off"></i> Logout</a></li>
                         </ul>
                     </li>
                     <!-- end: User Dropdown -->
@@ -343,7 +343,7 @@
                     <li><a href="{{route('create-brand')}}"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Add Brands</span></a></li>
                     <li><a href="{{route('products')}}"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Products </span></a></li>
                     <li><a href="{{route('create-product')}}"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Add Product</span></a></li>
-                    <li><a href="{{route('sliders')}}"><i class="icon-picture"></i><span class="hidden-tablet"> Sliders</span></a></li>
+                    <li><a href="{{route('sliders')}}"><i class="icon-pictureq"></i><span class="hidden-tablet"> Sliders</span></a></li>
                     <li><a href="{{route('create-slider')}}"><i class="icon-picture"></i><span class="hidden-tablet"> Add Slider</span></a></li>
                     <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
                     <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
