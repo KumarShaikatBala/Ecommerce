@@ -86,11 +86,26 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                            <li>
+                                @guest('customer')
+                                    <a href="{{route('customer-create')}}"><i class="fa fa-user"></i> Register</a>
+                                @else
+                                    <a href="{{route('checkout')}}"><i class="fa fa-user"></i>{{Auth::guard('customer')->user()->name}}</a>
+                                @endguest
+
+                               </li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            <li><a href="{{route('checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="{{route('customer-login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                            <li>
+
+                                @guest('customer')
+                                    <a href="{{route('customer-login')}}">Login</a>
+                                @else
+                                    <a href="{{route('customer-logout')}}">{{Auth::guard('customer')->user()->name}} Logout</a>
+                                @endguest
+
+                            </li>
                         </ul>
                     </div>
                 </div>

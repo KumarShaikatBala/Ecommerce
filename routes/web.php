@@ -110,3 +110,12 @@ Route::post('customer','Auth\CustomerController@login')->name('customer');
 Route::get('customer-logout','Auth\CustomerController@logout')->name('customer-logout');
 Route::get('customer-create','Auth\CustomerController@create')->name('customer-create');
 Route::post('customer-store','Auth\CustomerController@store')->name('customer-store');
+/*
+|--------------------------------------------------------------------------
+|                                Checkout Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('checkout','CheckoutController@create')->name('checkout');
+Route::post('shipping-store/{id}','CheckoutController@store')->name('shipping-store');
+Route::get('payment','CheckoutController@payment')->name('payment');
