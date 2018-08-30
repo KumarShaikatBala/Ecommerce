@@ -89,10 +89,10 @@
                     <h3 class="headingTop text-center">Select Your Payment Method</h3>
                     <p class="text-center">Created with bootsrap button and using radio button</p>
                 </div>
-                {!! Form::open(['url' =>'order'.$id=Auth::guard('customer')->user()->id,'method' =>'post','enctype'=>'multipart/form-data'])!!}
+                {!! Form::open(['url' =>'order','method' =>'post','enctype'=>'multipart/form-data'])!!}
                 {{ csrf_field() }}
                     <input type="radio" name="payment_method" value="handcash"> Hand Cash<br>
-                    <input type="radio" name="payment_method" value="cart"> Debit Card<br>
+                    <input type="radio" name="payment_method" value="card"> Debit Card<br>
                     <input type="radio" name="payment_method" value="paypal"> Paypal<br>
                     <input type="submit" name="" value="Done">
                 {!! Form::close() !!}

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Shipping;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use function view;
 use App\Product;
 use function compact;
@@ -47,6 +49,7 @@ class CheckoutController extends Controller
                 'address_1' => $request->address_1,
                 'address_2' => $request->address_2,
             ])){
+                Session::put('id','$shipping_id');
                 return redirect('payment')->with('msg','Successfull!');
             }
 
@@ -56,6 +59,57 @@ class CheckoutController extends Controller
         $contents=Cart::content();
         return view('frontEnd.pages.payment',compact('contents'));
     }
+    public function order(Request $request)
+    {
+        $payment_method=$request->payment_method;
+        // $total=Cart::total();
+        // echo $total;
+
+        $pdata=array();
+        $pdata['payment_method']=$payment_method;
+        $pdata['payment_status']='pending';
+        $payment_id=DB::table('payments')
+            ->insertGetId($pdata);
+
+        $odata=array();
+        $odata['customer_id']=Auth::guard('customer')->user()->id;
+        $odata['shipping_id']=Session::get('shipping_id');
+        $odata['payment_id']=$payment_id;
+        $odata['order_total']=Cart::total();
+        $odata['order_status']='pending';
+        $order_id=DB::table('orders')
+            ->insertGetId($odata);
+
+        $contents=Cart::content();
+        $oddata=array();
+        foreach ($contents as  $v_content)
+        {
+            $oddata['order_id']=$order_id;
+            $oddata['product_id']=$v_content->id;
+            $oddata['product_name']=$v_content->name;
+            $oddata['product_price']=$v_content->price;
+            $oddata['product_sales_quantity']=$v_content->qty;
+            DB::table('order_details')
+                ->insert($oddata);
+        }
+        if ($payment_method=='handcash') {
+
+            Cart::destroy();
+            echo "handcash";
+            //return view('pages.handcash');
+
+
+        }elseif ($payment_method=='card') {
+
+            echo "cart";
+
+        }elseif($payment_method=='paypal'){
+            echo "paypal";
+        }else{
+            echo "not selectd";
+        }
+
+    }
 
 
     public function show($id)
@@ -63,35 +117,19 @@ class CheckoutController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
